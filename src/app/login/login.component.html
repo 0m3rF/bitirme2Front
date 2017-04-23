@@ -1,0 +1,49 @@
+<md-card class="rightSideDiv">
+ 
+<form class="login-form">
+    <span> {{ 'WELCOME' | translate }} </span>
+    <p>
+        <md-input-container class="example-full-width">
+          <input mdInput type="text" [placeholder]="'USERNAME'|translate"  value="" />
+        </md-input-container>
+    </p>
+
+    <p>
+        <md-input-container class="example-full-width">
+          <input mdInput type="password" [placeholder]="'PASSWORD'|translate"  value="" />
+        </md-input-container>
+    </p>
+      
+    <p>
+        <button color="warn" class="example-full-width" md-raised-button (click)="login()">{{'LOGIN' | translate}}</button>
+    </p>
+
+    <p class="message">{{'NOT_REGISTERED' |translate }} &nbsp;  <a href="#"> {{'CREATE_ACCOUNT' | translate}}</a></p>
+</form>
+
+
+<form class="register-form">
+     <span> {{ 'CREATE_ACCOUNT' | translate }} </span>
+
+    <p>
+        <md-input-container class="example-full-width">
+          <input mdInput required type="text" [placeholder]="'USERNAME'|translate" value="" />
+        </md-input-container>
+    </p>
+
+    <p>
+        <md-input-container class="example-full-width">
+          <input mdInput required type="password" [placeholder]="'PASSWORD'|translate" value="" />
+        </md-input-container>
+    </p>
+
+    <p>
+        <md-input-container class="example-full-width">
+          <input mdInput required type="email" email [placeholder]="'EMAIL_ADDRESS'|translate" value="" />
+        </md-input-container>
+    </p>
+      <button md-raised-button class="example-full-width" color="primary" (click)="register()"> {{'CREATE'|translate}}</button>
+      <p class="message">{{'ALREADY_REGISTERED'|translate}}<a href="#"> {{'SIGN_IN'|translate}} </a></p>
+  
+</form>
+</md-card>

@@ -1,0 +1,17 @@
+{
+    "HELLO": "Hello",
+    "WELCOME_MESSAGE":"Do you want new music? You are in the right place!",
+    "WELCOME" : "Welcome",
+    "CHANGE_LANG":"Change Language",
+    "TURKISH": "Turkish",
+    "ENGLISH": "English",
+    "HEADER": "Header",
+    "JAPON": "Japanese",
+    "SELECT_LANG" : "Select Lang",
+    "USERNAME" : "Username",
+    "PASSWORD" : "Password",
+    "LOGIN" : "Login",
+    "REGISTER_FAIL" : "Register Fail",
+    "REGISTER_SUCCESS" : "Register Success",
+    "OK" : "Ok"
+}

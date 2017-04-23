@@ -1,0 +1,15 @@
+<md-toolbar color="primary">
+
+
+<md-select [(ngModel)]="selectedLang" [placeholder]="'SELECT_LANG'|translate" (change)="changeLang($event)">
+  <md-option *ngFor="let lang of langs" [value]="lang.value">
+    <span class="flag-icon" [ngClass]="lang.class"> </span>
+    {{ lang.viewValue | translate}}
+  </md-option>
+</md-select>
+
+<span> {{ 'HEADER' | translate }} </span>
+    <span class="example-spacer"></span>
+ <md-icon class="example-icon">verified_user</md-icon>
+  
+</md-toolbar>

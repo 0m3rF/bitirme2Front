@@ -1,0 +1,17 @@
+{
+    "HELLO": "Merhaba",
+    "WELCOME_MESSAGE":"Yeni bir müzik mi arıyorsun? O zaman doğru yerdesin!",
+    "WELCOME" : "Hoşgeldiniz",
+    "CHANGE_LANG":"Dili Değiştir",
+    "TURKISH": "Türkçe",
+    "ENGLISH": "İngilizce",
+    "HEADER": "Başlık",
+    "JAPON" : "Japonca",
+    "SELECT_LANG" : "Dil seçin",
+    "USERNAME" : "Kullanıcı Adı",
+    "PASSWORD" : "Şifre",
+    "LOGIN": "Giriş Yap",
+    "REGISTER_FAIL" : "Kayıt Başarısız",
+    "REGISTER_SUCCESS" : "Kayıt Başarılı",
+    "OK" : "Tamam"
+}
