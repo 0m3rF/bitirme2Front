@@ -10,7 +10,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { CookieService} from 'angular2-cookie/core';
 import { AppService } from './app.service';
 import { AuthGuard } from './auth.guard'; 
-import { AuthenticationService } from './authentication.service';
 import { routes } from './app.router';
 
 
@@ -19,7 +18,6 @@ import { FirstPageComponent } from './first-page/first-page.component';
 import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
-
 
 
 export function httpFactory(http:Http) {
@@ -46,7 +44,7 @@ export function httpFactory(http:Http) {
             deps: [Http]
         })
   ],
-  providers: [AppService,CookieService,AuthGuard,AuthenticationService],
+  providers: [AppService,CookieService,AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

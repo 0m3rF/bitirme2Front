@@ -1,3 +1,39 @@
-<p>
-  dashboard-page works!
-</p>
+
+<md-card class="content" *ngIf="isFirstTime" [@flyInOut]="animState1">
+  Burası ilk defa login yapılınca açılacak. Ve sırasıyla genreler vs. seçilecek
+  <md-list>
+    <md-list-item *ngFor="let genre of genres"> 
+      <md-checkbox>{{genre}}</md-checkbox>
+    </md-list-item>
+  </md-list>
+
+  
+    <button md-fab (click)="animState1 = 'out'; animState2='in'"><md-icon>navigate_next</md-icon></button>
+</md-card>
+
+
+<md-card class="content" [@flyInOut]="animState2">
+
+  <md-list>
+    <md-list-item *ngFor="let genre of genres"> 
+      <md-checkbox>{{genre}}</md-checkbox>
+    </md-list-item>
+  </md-list>
+
+  
+    <button md-fab (click)="animState2 = 'out'; animState3='in' "><md-icon>navigate_next</md-icon></button>
+
+</md-card>
+
+<md-card class="content" [@flyInOut]="animState3">
+
+  <md-list>
+    <md-list-item *ngFor="let genre of genres"> 
+      <md-checkbox>{{genre}}</md-checkbox>
+    </md-list-item>
+  </md-list>
+
+  
+    <button md-fab (click)="animState3='out'"><md-icon>navigate_next</md-icon></button>
+
+</md-card>

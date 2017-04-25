@@ -5,7 +5,7 @@
     "CHANGE_LANG":"Dili Değiştir",
     "TURKISH": "Türkçe",
     "ENGLISH": "İngilizce",
-    "HEADER": "Başlık",
+    "HEADER": "Veri Madenciliği Projesi",
     "JAPON" : "Japonca",
     "SELECT_LANG" : "Dil seçin",
     "USERNAME" : "Kullanıcı Adı",
@@ -13,5 +13,7 @@
     "LOGIN": "Giriş Yap",
     "REGISTER_FAIL" : "Kayıt Başarısız",
     "REGISTER_SUCCESS" : "Kayıt Başarılı",
+    "LOGIN_FAIL" : "Giriş Başarısız",
+    "LOGIN_SUCCESS" : "Giriş Başarılı",
     "OK" : "Tamam"
 }

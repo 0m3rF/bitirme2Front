@@ -1,4 +1,4 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component } from '@angular/core';
 import { TranslateService } from 'ng2-translate';
 import { AppService } from '../app.service';
 
@@ -16,16 +16,15 @@ export class HeaderComponent {
     {value: 'en', viewValue: 'ENGLISH', class: 'flag-icon-gb'},
     {value: 'jp', viewValue: 'JAPON', class: 'flag-icon-jp'}
   ];
-  constructor(private _service: AppService,private _renderer : Renderer2) {
+  constructor(private _service: AppService) {
      
     this.translate = _service.getTranslate();
     this.selectedLang = _service.getCookie("lang");
     }
 
-    ngAfterViewInit(){
-
-
-    
+    logout()
+    {
+      this._service.logout();
     }
 
     changeLang(lang)

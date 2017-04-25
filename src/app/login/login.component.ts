@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AppService } from '../app.service';
-import { AuthenticationService} from '../authentication.service';
 declare var $:any;
 
 @Component({
@@ -18,39 +17,41 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private _service: AppService,
-    private _authenticationService: AuthenticationService,
     private _route: ActivatedRoute,
     private _router: Router
-  ) { this.translate = _service.getTranslate(); }
+  ){ 
+    this.translate = _service.getTranslate(); 
+
+    }
 
   ngOnInit() {
     $('.message a').click(function(e){
         e.preventDefault();
           $('form').animate({height: "toggle", opacity: "toggle"}, "slow");
     });
-    // reset login status
-    this._authenticationService.logout();
-
-    // get return url from route parameters or default to '/'
-    this.returnUrl = "dashboard";//this._route.snapshot.queryParams['returnUrl'] || '/';
-  }
+   }
 
     login() {
         this.loading = true;
         var username = $("input")[0].value;
         var password = $("input")[1].value;
 
-        this._authenticationService.login(username, password)
-            .subscribe(
-                data => {
+       this._service.login(username,password).subscribe(res=>{
+         console.log("login başarılı! = " + JSON.stringify(res));
 
-                    this._router.navigate([this.returnUrl]);
-                },
-                error => {
-                    console.log("Hata! = " + error);
-                    
-                    this.loading = false;
-                });
+         if(res.LOGIN == "success")
+         {
+            localStorage.setItem("currentUser",JSON.stringify(res));
+            this._service.isLoggedin = true;
+            this._router.navigate(['dashboard']);
+            this._service.openSnackBar("LOGIN_SUCCESS","OK");
+            
+         }
+         else{
+            this._service.openSnackBar("LOGIN_FAIL","OK");
+         }
+       });
+
     }
 
     register(){
