@@ -15,5 +15,10 @@
     "REGISTER_SUCCESS" : "Kayıt Başarılı",
     "LOGIN_FAIL" : "Giriş Başarısız",
     "LOGIN_SUCCESS" : "Giriş Başarılı",
-    "OK" : "Tamam"
+    "OK" : "Tamam",
+    "TURKEY" : "Türkiye",
+    "AZERBAIJAN" : "Azerbeycan",
+    "ENGLAND" : "İngiltere" ,
+    "GERMANY" : "Almanya",
+    "SELECT_COUNTRY": "Ülkenizi Seçiniz"
 }

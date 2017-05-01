@@ -1,0 +1,23 @@
+.content{
+    position:fixed;
+    left : 25%;
+    min-width: 50%;
+    max-width: 50%;
+    margin: 15px auto;
+}
+
+.genre
+{
+    float:left;
+    min-width: 200px;
+    
+}
+.button-next
+{
+    float : right;
+}
+
+.button-before
+{
+    float: left;
+}

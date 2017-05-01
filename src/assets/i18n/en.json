@@ -15,5 +15,10 @@
     "REGISTER_SUCCESS" : "Register Success",
     "LOGIN_FAIL" : "Login Fail",
     "LOGIN_SUCCESS" : "Login Success",
-    "OK" : "Ok"
+    "OK" : "Ok",
+    "TURKEY" : "Turkey",
+    "AZERBAIJAN" : "Azerbaijan",
+    "ENGLAND" : "England" ,
+    "GERMANY" : "Germany",
+    "SELECT_COUNTRY": "Select Your Country"
 }

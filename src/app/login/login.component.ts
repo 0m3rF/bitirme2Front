@@ -37,7 +37,6 @@ export class LoginComponent implements OnInit {
         var password = $("input")[1].value;
 
        this._service.login(username,password).subscribe(res=>{
-         console.log("login başarılı! = " + JSON.stringify(res));
 
          if(res.LOGIN == "success")
          {
@@ -61,7 +60,6 @@ export class LoginComponent implements OnInit {
         var email = $("input")[4].value;
 
         this._service.create(username,password,email).subscribe(res =>{
-          console.log("register res = " + JSON.stringify(res));
 
           if(res.register == "success")
           {
