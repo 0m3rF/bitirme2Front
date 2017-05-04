@@ -10,7 +10,7 @@ export class Genres
         {"name":"Latin","id":13}, {"name":"New Age","id":14}, 
         {"name":"Pop-Rock","id":15}, {"name":"Rap","id":16}, 
         {"name":"Reggae","id":17}, {"name":"Religious","id":18}, 
-        {"name":"RnB","id":19}, {"name":"Stage ","id":20}, 
+        {"name":"RnB","id":19}, {"name":"Stage","id":20}, 
         {"name":"Vocal","id":21}
         ]
 }

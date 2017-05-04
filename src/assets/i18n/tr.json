@@ -20,5 +20,20 @@
     "AZERBAIJAN" : "Azerbeycan",
     "ENGLAND" : "İngiltere" ,
     "GERMANY" : "Almanya",
-    "SELECT_COUNTRY": "Ülkenizi Seçiniz"
+    "SELECT_COUNTRY": "Ülkenizi Seçiniz",
+    "FOR_YOU" : "Size Özel",
+    "COUNTRIES" : "Ülkeler",
+    "GENRES" : "Türler",
+    "AGE" : "Yaş",
+    "HOME" : "Anasayfa",
+    "DASHBOARD" : "Pano",
+    "LOGOUT" : "Çıkış",
+    "NOT_REGISTERED" : "Kayıtlı Değil misin?",
+    "CREATE_ACCOUNT" : "Hesap Oluştur",
+    "EMAIL_ADDRESS" : "Email Adresi",
+    "ALREADY_REGISTERED" : "Kayıtlı mısınız?",
+    "SIGN_IN" : "Giriş Yap",
+    "CREATE" : "Oluştur",
+    "PROFILE" : "Profil",
+    "SETTINGS" : "Ayarlar"
 }

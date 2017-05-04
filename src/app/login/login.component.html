@@ -1,4 +1,4 @@
-<md-card class="rightSideDiv">
+<md-card class="rightSideDiv" *ngIf="!this.service.isLoggedin">
  
 <form class="login-form">
     <span> {{ 'WELCOME' | translate }} </span>
@@ -18,7 +18,7 @@
         <button color="warn" class="example-full-width" md-raised-button (click)="login()">{{'LOGIN' | translate}}</button>
     </p>
 
-    <p class="message">{{'NOT_REGISTERED' |translate }} &nbsp;  <a href="#"> {{'CREATE_ACCOUNT' | translate}}</a></p>
+    <p class="message">{{'NOT_REGISTERED' |translate }} &nbsp;  <a  (click)="animateForm()"> {{'CREATE_ACCOUNT' | translate}}</a></p>
 </form>
 
 
@@ -43,7 +43,7 @@
         </md-input-container>
     </p>
       <button md-raised-button class="example-full-width" color="primary" (click)="register()"> {{'CREATE'|translate}}</button>
-      <p class="message">{{'ALREADY_REGISTERED'|translate}}<a href="#"> {{'SIGN_IN'|translate}} </a></p>
+      <p class="message">{{'ALREADY_REGISTERED'|translate}} <a (click)="animateForm()"> {{'SIGN_IN'|translate}} </a></p>
   
 </form>
 </md-card>

@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component} from '@angular/core';
 import { TranslateService } from 'ng2-translate';
 import { AppService } from '../app.service';
-
+import { Router } from '@angular/router';
+import { FirstTimeComponent } from '../first-time/first-time.component'; 
 
 @Component({
   selector: 'app-header',
@@ -9,6 +10,7 @@ import { AppService } from '../app.service';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent {
+
   selectedLang = "";
   translate:any;
   langs = [
@@ -16,21 +18,50 @@ export class HeaderComponent {
     {value: 'en', viewValue: 'ENGLISH', class: 'flag-icon-gb'},
     {value: 'jp', viewValue: 'JAPON', class: 'flag-icon-jp'}
   ];
-  constructor(private _service: AppService) {
+  constructor(private service: AppService, private _router: Router) {
      
-    this.translate = _service.getTranslate();
-    this.selectedLang = _service.getCookie("lang");
+    this.translate = service.getTranslate();
+    this.selectedLang = service.getCookie("lang");
     }
 
     logout()
     {
-      this._service.logout();
+      this.service.logout();
+    }
+
+    gotoHome()
+    {
+      this._router.navigate(['home']);
+    }
+
+    gotoDashboard()
+    {
+      this._router.navigate(['dashboard']);
+    }
+
+    gotoProfile()
+    {
+      this._router.navigate(['profile']);
+    }
+
+    gotoSettings()
+    {
+      this._router.navigate(['settings']);
+    }
+    gotoFirstTime()
+    {
+      this._router.navigate(['dashboard']);
+      setTimeout(()=>{this.service.isFirstTime = true;
+      this.service.setFirstTimeSearch();},250);
+      
+
     }
 
     changeLang(lang)
     {
       this.translate.use(lang.value);
       this.selectedLang = lang.value;
-      this._service.setCookie("lang",lang.value);
+      this.service.setCookie("lang",lang.value);
     }
+
 }

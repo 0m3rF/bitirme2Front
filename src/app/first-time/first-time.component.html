@@ -1,10 +1,11 @@
-
+<div *ngIf="this.service.isFirstTime" >
 <!-- 1. Kart Genreler -->
-<md-card class="content" *ngIf="isFirstTime" [@flyInOut]="animState1">
+<md-card class="content" [@flyInOut]="animState1">
   Burası ilk defa login yapılınca açılacak. Ve sırasıyla genreler vs. seçilecek
   <md-list>
-    <md-list-item *ngFor="let genre of genres" class="genre"> 
-      <md-checkbox>{{genre.name | translate}}</md-checkbox>
+    <md-list-item *ngFor="let genre of this.service.genres" class="genre"> 
+      <md-checkbox class="genreCheckbox" [value]="genre.id" 
+       (click)="addFavSong($event)" [checked]="isGenreChecked(genre.id)">{{genre.name | translate}}</md-checkbox>
     </md-list-item>
   </md-list>
 
@@ -18,15 +19,15 @@
 
 <md-card class="content" [@flyInOut]="animState2">
 
-<md-input-container>
-  <input mdInput placeholder="Country" [mdAutocomplete]="auto" [formControl]="stateCtrl">
-</md-input-container>
+  <md-input-container>
+    <input id="countryInput" [ngModel]="getCountryId()" mdInput [placeholder]="'COUNTRY'|translate" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+  </md-input-container>
 
-<md-autocomplete #auto="mdAutocomplete">
-  <md-option *ngFor="let state of filteredStates | async" [value]="state">
-    {{ state }}
-  </md-option>
-</md-autocomplete>
+  <md-autocomplete #auto="mdAutocomplete" >
+    <md-option *ngFor="let state of filteredStates | async" [value]="state">
+      {{ state }}
+    </md-option>
+  </md-autocomplete>
 
 
 
@@ -46,15 +47,15 @@
 
  
 
-<md-input-container>
-  <input mdInput placeholder="Your Age" value="0">
-</md-input-container>
-<br>
-<br>
+  <md-input-container>
+    <input id="ageInput" mdInput [placeholder]="'YOUR_AGE'|translate" type="number" [value]="age">
+  </md-input-container>
+  <br>
+  <br>
 
   
-    <button md-fab (click)="click3before()" class="button-before"><md-icon>navigate_before</md-icon></button>
-    <button md-fab (click)="click3next()" class="button-next"><md-icon>navigate_next</md-icon></button>
+  <button md-fab (click)="click3before()" class="button-before"><md-icon>navigate_before</md-icon></button>
+  <button md-fab (click)="click3next()" class="button-next"><md-icon>navigate_next</md-icon></button>
 
 </md-card>
 
@@ -67,15 +68,25 @@
   
 
 <md-input-container>
-  <input mdInput placeholder="Search for song!" value="Sushi">
+  <input id="searchInput" #searchInput mdInput [placeholder]="'SEARCH_FOR_SONG'|translate" >
 </md-input-container>
 
+  <md-list>
+    <md-list-item *ngFor="let song of songs" > 
+      <md-checkbox class="songCheckbox" [value]="song.sarkiId"
+      [checked]="isSongChecked(song.sarkiId)" (change)="addFavSong(song.sarkiId)">{{song.sarkiismi}} - {{song.sanatciIsmi}}</md-checkbox>
+    </md-list-item>
+  </md-list>
+
 
 <br>
 <br>
+<br>
+
   
     <button md-fab (click)="click4before()" class="button-before"><md-icon>navigate_before</md-icon></button>
     <button md-fab (click)="alldone()" class="button-next"><md-icon>done</md-icon></button>
 
 </md-card>
 
+</div>

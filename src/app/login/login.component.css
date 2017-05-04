@@ -19,3 +19,9 @@
   display: none;
   width: 350px;
 }
+
+a{
+  text-decoration: underline;
+  color: blue;
+  cursor: pointer;
+}

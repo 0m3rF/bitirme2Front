@@ -10,8 +10,8 @@ export class FirstPageComponent implements OnInit {
   
   translate:any;
 
-  constructor(private _service: AppService) {
-            this.translate = _service.getTranslate();
+  constructor(private service: AppService) {
+            this.translate = service.getTranslate();
             
     }
 

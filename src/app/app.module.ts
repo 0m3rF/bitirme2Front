@@ -18,6 +18,10 @@ import { LoginComponent } from './login/login.component';
 import { HeaderComponent } from './header/header.component';
 import { DashboardPageComponent } from './dashboard-page/dashboard-page.component';
 import { FirstTimeComponent } from './first-time/first-time.component';
+import { PlaylistsComponent } from './playlists/playlists.component';
+import { UserStatsComponent } from './user-stats/user-stats.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { UserSettingsComponent } from './user-settings/user-settings.component';
 
 
 export function httpFactory(http:Http) {
@@ -30,7 +34,11 @@ export function httpFactory(http:Http) {
     LoginComponent,
     HeaderComponent,
     DashboardPageComponent,
-    FirstTimeComponent
+    FirstTimeComponent,
+    PlaylistsComponent,
+    UserStatsComponent,
+    UserProfileComponent,
+    UserSettingsComponent
   ],
   imports: [
     routes,

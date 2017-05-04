@@ -9,8 +9,12 @@
 .genre
 {
     float:left;
-    min-width: 200px;
-    
+    min-width: 200px;   
+}
+.song
+{
+    float:left;
+    clear:right;
 }
 .button-next
 {

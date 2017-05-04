@@ -20,5 +20,19 @@
     "AZERBAIJAN" : "Azerbaijan",
     "ENGLAND" : "England" ,
     "GERMANY" : "Germany",
-    "SELECT_COUNTRY": "Select Your Country"
+    "SELECT_COUNTRY": "Select Your Country",
+    "FOR_YOU" : "For You",
+    "COUNTRIES" : "Countries",
+    "GENRES" : "Genres",
+    "AGE" : "Age",
+    "HOME" : "Home",
+    "DASHBOARD" : "Dashboard",
+    "LOGOUT" : "Logout",
+    "NOT_REGISTERED" : "Not Registered?",
+    "CREATE_ACCOUNT" : "Create Account",
+    "ALREADY_REGISTERED" : "Already Registered?",
+    "SIGN_IN" : "Sign In",
+    "CREATE" : "Create",
+    "PROFILE" : "Profile",
+    "SETTINGS" : "Settings"
 }
