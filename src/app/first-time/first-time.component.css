@@ -3,7 +3,7 @@
     left : 25%;
     min-width: 50%;
     max-width: 50%;
-    margin: 15px auto;
+    margin: 8% auto;
 }
 
 .genre
@@ -24,4 +24,18 @@
 .button-before
 {
     float: left;
+}
+.button-firstTimeClose
+{
+    float:right
+
+}
+
+.buttonsWrapper
+{
+    position:fixed;
+    left : 25%;
+    min-width: 50%;
+    max-width: 50%;
+    margin: 3% auto;
 }

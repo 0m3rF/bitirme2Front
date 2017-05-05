@@ -49,6 +49,7 @@ export class LoginComponent implements OnInit  {
             localStorage.setItem("currentUser",JSON.stringify(res));
             this.service.isFirstTime = res.isFirstTime;
             this.service.isLoggedin = true;
+            this.service.setLocalInfos();
             this._router.navigate(['dashboard']);
             this.service.openSnackBar("LOGIN_SUCCESS","OK");
             

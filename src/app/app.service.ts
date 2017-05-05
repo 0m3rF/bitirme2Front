@@ -16,12 +16,21 @@ export class AppService {
   public firstTimeComponent : FirstTimeComponent= null;
   public countries = null;
   public genres = null;
+  public favGenres = [];
+  public favSongs = [];
+  public selectedCountry = 1;
+  public age  = 0;
+
+
   constructor(private _cookieService:CookieService,private _http:Http
   ,private _translate: TranslateService,public snackBar: MdSnackBar,
     private _router: Router) {
 
       this.countries = this.getCountries();
       this.genres = this.getGenres();
+      
+      console.log("Service çalıştı!");
+      
 
       _translate.setDefaultLang("en");
       this.logout();
@@ -37,6 +46,25 @@ export class AppService {
       }
      
  }
+  getCountryId() // First time infoları değişirken tekrardan geldiğinde ülkenin seçili gelmesi için
+  {    
+    return this.countries[(this.selectedCountry-1)].country;
+  }
+
+  setLocalInfos()
+  {
+    var local = JSON.parse(localStorage.getItem("currentUser"));
+      console.log("local = " + JSON.stringify(local));
+    
+    if(!this.isFirstTime)
+    {
+      
+      this.favGenres = local.favGenreId;
+      this.favSongs = local.favSongId;
+      this.age = local.age;
+      this.selectedCountry = local.country;
+    }
+  }
 
   getCookie(key: string){
     return this._cookieService.get(key);
@@ -54,7 +82,6 @@ export class AppService {
 
   setFirstTimeSearch()
   {
-    
     setTimeout( ()=>{this.firstTimeComponent.setFirstTimeSearch()},500)
   }
 

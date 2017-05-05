@@ -1,4 +1,4 @@
-import { Component, OnInit,ViewChild} from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { trigger, state, style, transition, animate } from '@angular/animations';
 import { AppService } from '../app.service';
 import { FormControl } from '@angular/forms';
@@ -21,28 +21,26 @@ import { Observable } from 'rxjs/Observable';
     state('active',   style({
       transform: 'scale(1) translateX(0%)'
     })),
-    transition('inactive <=> active', animate('750ms ease-in-out'))
+    transition('inactive <=> active', animate('450ms ease-in-out'))
   ])
   ]
 })
 export class FirstTimeComponent {
 
   @ViewChild("searchInput") searchInput;
+
   stateCtrl: FormControl; // autocomplete için
   filteredStates: any;
-
+  b1 = "accent"; b2="warn"; b3="warn"; b4="warn";
   animState1 = "active";
   animState2 = "inactive";
   animState3 = "inactive";
   animState4 = "inactive";
   songs =  null;
   translate = null;
-  // TODO : dil çevirileri yapılacak!
 
-  favGenres = [];
-  favSongs = [];
-  selectedCountry = 0;
-  age  = 0;
+  selectedPart = "genres" // Bu değişken firsttimeda yukarıdan değişiklik yapılırsa, bu değişikliği kaydetmeye yarayacak.
+
   
   constructor(private service : AppService) {
     this.translate = service.getTranslate();
@@ -70,20 +68,10 @@ export class FirstTimeComponent {
   {
     this.service.firstTimeComponent = this; 
     this.setFirstTimeSearch();
-    this.setLocalInfos();
+    
   }
 
-  setLocalInfos()
-  {
-    var local = JSON.parse(localStorage.getItem("currentUser"));
-    if(!this.service.isFirstTime)
-    {
-      this.favGenres = local.favGenreId;
-      this.favSongs = local.favSongId;
-      this.age = local.age;
-      this.selectedCountry = local.country;
-    }
-  }
+
 
   setFirstTimeSearch()
   {
@@ -107,132 +95,221 @@ export class FirstTimeComponent {
 
   isGenreChecked(check)
   {
-    return this.favGenres.indexOf(check) == -1 ? false : true;
+    return this.service.favGenres.indexOf(check) == -1 ? false : true;
   }
 
-  isSongChecked(id)
+  isSongChecked(sarkiId)
   {
-    return this.favSongs.indexOf(id) == -1  ? false : true; 
+    return this.service.favSongs.indexOf(sarkiId) == -1  ? false : true; 
   }
 
-  addFavSong(id)
+  addFavSong(sarkiId)
   {
-    var index = this.favSongs.indexOf(id);
+    var index = this.service.favSongs.indexOf(sarkiId);
+    console.log("sarki id = " + sarkiId);
+    
     if(index == -1)
     {
-      this.favSongs.push(id);
+      this.service.favSongs.push(sarkiId);
     }else
     {
-      this.favSongs.splice(index,1);
+      this.service.favSongs.splice(index,1);
     }
   }
 
   addFavGenres(nodes)
   {
+    this.service.favGenres =[];
     for(var i = 0; i < nodes.length ; i++ )
     {
       var obj = this.service.genres.filter((obj)=>{
         return obj.name == nodes[i].innerText;
       });
-      this.favGenres.push(obj[0].id); // türlerden 2 tane olmayacağı için 0 diyebilirm
+      this.service.favGenres.push(obj[0].id); // türlerden 2 tane olmayacağı için 0 diyebilirm
     }
   }
 
-  addFavSongs(nodes)
+  changePartFromButtons(target)
   {
-    for(var i = 0; i < nodes.length ; i++ )
-    {
-      var obj = this.songs.filter((obj)=>{
-        return (obj.sarkiismi + " - " + obj.sanatciIsmi) == nodes[i].innerText;
-      });
+    if(target == this.selectedPart)
+      return;
+      console.log("Click çalıştı ?" + target);
       
-      this.favSongs.push(obj[0].sarkiId); // şarkılardan 2 tane olmayacağı için 0 diyebilirm
+    switch(target)
+    {
+      case "genres":
+        this.animState1 = "active";
+        this.b1 = "accent";
+        this.disableCurrentPart(this.selectedPart);
+      break;
+
+      case "country":
+        this.animState2 = "active";
+        this.b2 = "accent";
+        this.disableCurrentPart(this.selectedPart);
+      break;
+        
+      case "age":
+        this.animState3 = "active";
+        this.b3 = "accent";
+        this.disableCurrentPart(this.selectedPart);
+      break;
+
+      case "songs":
+        this.animState4 = "active";
+        this.b4 = "accent";
+        this.disableCurrentPart(this.selectedPart);
+      break;
+    }
+
+    this.selectedPart = target;
+  }
+
+  disableCurrentPart(current)
+  {
+    switch(current)
+    {
+      case "genres":
+        this.animState1 = "inactive";
+        this.b1 = "warn";
+        this.addFavGenres(document.querySelectorAll(".genreCheckbox.mat-checkbox-checked"))
+        console.log("Fav genres = " + this.service.favGenres);
+      break;
+
+      case "country":
+        this.animState2 = "inactive";
+        this.b2 = "warn";
+        var obj = this.service.countries.filter(val =>{
+          return val.country == (<HTMLInputElement>document.querySelector("#countryInput")).value
+        })
+        this.service.selectedCountry = obj[0].cid;
+    
+        console.log("selected CountryID = " + this.service.selectedCountry);
+      break;
+
+      case "age":
+        this.animState3 = "inactive";
+        this.b3 = "warn";
+        this.service.age  = parseInt( (<HTMLInputElement> (document.querySelector("#ageInput"))).value);
+    
+        console.log("wtf age = " + this.service.age);
+      break;
+
+      case "songs":
+        this.animState4 = "inactive";
+        this.b4 = "warn";
+      break;  
     }
   }
+
+  closeFirstTime()
+  {
+    this.service.isFirstTime=false;
+    this.selectedPart = "genres";
+    this.animState1 = "active";
+    this.animState2 = "inactive";
+    this.animState3 = "inactive";
+    this.animState4 = "inactive";
+    this.b1 = "accent"; 
+    this.b2="warn"; 
+    this.b3="warn"; 
+    this.b4="warn";
+  }
+
   // TODO : tüm geçişlerde kontrol yapılacak
   click1next()
   {
     this.animState2 = 'active';
     this.animState1 = 'inactive';
+    this.b1= "warn";
+    this.b2 = "accent";
+    this.selectedPart = "country";
 
-    this.favGenres = [];
     this.addFavGenres(document.querySelectorAll(".genreCheckbox.mat-checkbox-checked"))
-    console.log("Fav genres = " + this.favGenres);
+    console.log("Fav genres = " + this.service.favGenres);
   }
 
   click2before()
   {
     this.animState2 = 'inactive'; 
     this.animState1 = 'active';
+    this.b1= "accent";
+    this.b2 = "warn";
+    this.selectedPart = "genres";
+    
   } 
 
   click2next()
   {
     this.animState2 = 'inactive';
     this.animState3 = 'active'; 
+    this.b2= "warn";
+    this.b3 = "accent";
+    this.selectedPart = "age";
 
     var obj = this.service.countries.filter(val =>{
       return val.country == (<HTMLInputElement>document.querySelector("#countryInput")).value
     })
-    console.log(obj);
-    this.selectedCountry = obj[0].cid;
+    this.service.selectedCountry = obj[0].cid;
     
-    console.log("selected CountryID = " + this.selectedCountry);
+    console.log("selected CountryID = " + this.service.selectedCountry);
   }
-  getCountryId() // First time infoları değişirken tekrardan geldiğinde ülkenin seçili gelmesi için
-  {
-    return this.service.countries[(this.selectedCountry-1)].country;
-  }
+
 
   click3before()
   {
     this.animState3 = 'inactive';
     this.animState2 = 'active'; 
+    this.b3= "warn";
+    this.b2 = "accent";
+    this.selectedPart = "country";
   }
 
   click3next()
   {
     this.animState3 = 'inactive';
     this.animState4 = "active";
-    console.log("age = " + this.age);
+    this.b3= "warn";
+    this.b4 = "accent";
+    this.selectedPart = "songs";
+
+    this.service.age  = parseInt( (<HTMLInputElement> (document.querySelector("#ageInput"))).value);
+    console.log("age = " + this.service.age);
   }
 
   click4before()
   {
     this.animState4 = 'inactive';
     this.animState3 = "active";
+    this.b3= "accent";
+    this.b4 = "warn";
+    this.selectedPart = "age";
 
-    this.favSongs = [];
-    // TODO : set fav songs here
   }
 
 
   alldone()
   {
-    //this.addFavSongs(document.querySelectorAll(".songCheckbox.mat-checkbox-checked"))
     var local = JSON.parse(localStorage.getItem("currentUser"));
-    console.log("fav songs = " + this.favSongs);
+    console.log("fav songs = " + this.service.favSongs);
     var info = {
       username: local.username,
-      age : this.age,
-      favSongs : this.favSongs,
-      favGenres : this.favGenres,
-      country: this.selectedCountry,
+      age : this.service.age,
+      favSongs : this.service.favSongs,
+      favGenres : this.service.favGenres,
+      country: this.service.selectedCountry,
       token : local.token
     }
 
-    local.favSongId = this.favSongs;
-    local.favGenreId = this.favGenres;
-    local.country = this.selectedCountry;
-    local.age = this.age;
+    local.favSongId = this.service.favSongs;
+    local.favGenreId = this.service.favGenres;
+    local.country = this.service.selectedCountry;
+    local.age = this.service.age;
 
 
     this.service.setFirstTimeInfo(info).subscribe(res =>{
-      this.service.isFirstTime = false;
-      this.animState1 = "active";
-      this.animState2 = "inactive";
-      this.animState3 = "inactive";
-      this.animState4 = "inactive";
+      this.closeFirstTime();
+
       this.service.openSnackBar("UPDATE_SUCCESS","OK");
     });
   }

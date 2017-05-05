@@ -23,8 +23,11 @@
     "SELECT_COUNTRY": "Ülkenizi Seçiniz",
     "FOR_YOU" : "Size Özel",
     "COUNTRIES" : "Ülkeler",
+    "COUNTRY" : "Ülke",
     "GENRES" : "Türler",
     "AGE" : "Yaş",
+    "YOUR_AGE" : "Yaşınız",
+    "SONGS" : "Şarkılar",
     "HOME" : "Anasayfa",
     "DASHBOARD" : "Pano",
     "LOGOUT" : "Çıkış",
@@ -35,5 +38,7 @@
     "SIGN_IN" : "Giriş Yap",
     "CREATE" : "Oluştur",
     "PROFILE" : "Profil",
-    "SETTINGS" : "Ayarlar"
+    "SETTINGS" : "Ayarlar",
+    "CHANGE_INFO" : "Bilgilerini Değiştir",
+    "SEARCH_FOR_SONG" : "Şarkı Ara"
 }

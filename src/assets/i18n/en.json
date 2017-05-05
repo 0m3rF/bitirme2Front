@@ -23,8 +23,11 @@
     "SELECT_COUNTRY": "Select Your Country",
     "FOR_YOU" : "For You",
     "COUNTRIES" : "Countries",
+    "COUNTRY" : "Country",
     "GENRES" : "Genres",
     "AGE" : "Age",
+    "YOUR_AGE" : "Your Age",
+    "SONGS" : "Songs",
     "HOME" : "Home",
     "DASHBOARD" : "Dashboard",
     "LOGOUT" : "Logout",
@@ -34,5 +37,7 @@
     "SIGN_IN" : "Sign In",
     "CREATE" : "Create",
     "PROFILE" : "Profile",
-    "SETTINGS" : "Settings"
+    "SETTINGS" : "Settings",
+    "CHANGE_INFO" : "Change Info",
+    "SEARCH_FOR_SONG" : "Search Song"
 }

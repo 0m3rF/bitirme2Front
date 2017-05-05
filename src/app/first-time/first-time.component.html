@@ -1,7 +1,18 @@
 <div *ngIf="this.service.isFirstTime" >
+
+<md-card class="buttonsWrapper">
+  <button md-raised-button [color]="b1" (click)="changePartFromButtons('genres')">{{'GENRES' | translate}}</button>
+  <button md-raised-button [color]="b2" (click)="changePartFromButtons('country')">{{'COUNTRY' | translate}}</button>
+  <button md-raised-button [color]="b3" (click)="changePartFromButtons('age')">{{'AGE' | translate}}</button>
+  <button md-raised-button [color]="b4" (click)="changePartFromButtons('songs')">{{'SONGS' | translate}}</button>
+
+<button class="button-firstTimeClose" md-mini-fab (click)="closeFirstTime()" ><md-icon>close</md-icon></button>
+  
+</md-card>
+   
+
 <!-- 1. Kart Genreler -->
 <md-card class="content" [@flyInOut]="animState1">
-  Burası ilk defa login yapılınca açılacak. Ve sırasıyla genreler vs. seçilecek
   <md-list>
     <md-list-item *ngFor="let genre of this.service.genres" class="genre"> 
       <md-checkbox class="genreCheckbox" [value]="genre.id" 
@@ -20,7 +31,7 @@
 <md-card class="content" [@flyInOut]="animState2">
 
   <md-input-container>
-    <input id="countryInput" [ngModel]="getCountryId()" mdInput [placeholder]="'COUNTRY'|translate" [mdAutocomplete]="auto" [formControl]="stateCtrl">
+    <input id="countryInput" [ngModel]="this.service.getCountryId()" mdInput [placeholder]="'COUNTRY'|translate" [mdAutocomplete]="auto" [formControl]="stateCtrl">
   </md-input-container>
 
   <md-autocomplete #auto="mdAutocomplete" >
@@ -45,10 +56,8 @@
 
 <md-card class="content" [@flyInOut]="animState3">
 
- 
-
   <md-input-container>
-    <input id="ageInput" mdInput [placeholder]="'YOUR_AGE'|translate" type="number" [value]="age">
+    <input id="ageInput" mdInput [placeholder]="'YOUR_AGE'|translate" type="number" [value]="this.service.age">
   </md-input-container>
   <br>
   <br>
