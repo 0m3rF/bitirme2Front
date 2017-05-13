@@ -6,17 +6,19 @@
   <button md-raised-button [color]="b3" (click)="changePartFromButtons('age')">{{'AGE' | translate}}</button>
   <button md-raised-button [color]="b4" (click)="changePartFromButtons('songs')">{{'SONGS' | translate}}</button>
 
-<button class="button-firstTimeClose" md-mini-fab (click)="closeFirstTime()" ><md-icon>close</md-icon></button>
+<button class="button-firstTimeClose" md-mini-fab (click)="closeFirstTime()" 
+[disabled]="this.service.age == 0"  ><md-icon>close</md-icon></button>
   
 </md-card>
    
 
 <!-- 1. Kart Genreler -->
 <md-card class="content" [@flyInOut]="animState1">
+  <span> {{"SELECT_GENRE" | translate}} </span>
   <md-list>
     <md-list-item *ngFor="let genre of this.service.genres" class="genre"> 
       <md-checkbox class="genreCheckbox" [value]="genre.id" 
-       (click)="addFavSong($event)" [checked]="isGenreChecked(genre.id)">{{genre.name | translate}}</md-checkbox>
+       [checked]="isGenreChecked(genre.id)">{{genre.name | translate}}</md-checkbox>
     </md-list-item>
   </md-list>
 
@@ -27,7 +29,6 @@
 
 
 <!-- 2. Kart Ülkeler-->
-
 <md-card class="content" [@flyInOut]="animState2">
 
   <md-input-container>
@@ -50,10 +51,7 @@
 </md-card>
 
 
-
 <!-- 3. Kart Yaş-->
-
-
 <md-card class="content" [@flyInOut]="animState3">
 
   <md-input-container>
@@ -70,15 +68,13 @@
 
 
 <!-- 4. Kart Song Search-->
-
-
 <md-card class="content" [@flyInOut]="animState4">
 
   
 
-<md-input-container>
-  <input id="searchInput" #searchInput mdInput [placeholder]="'SEARCH_FOR_SONG'|translate" >
-</md-input-container>
+  <md-input-container>
+    <input id="searchInput" #searchInput mdInput [placeholder]="'SEARCH_FOR_SONG'|translate" >
+  </md-input-container>
 
   <md-list>
     <md-list-item *ngFor="let song of songs" > 
@@ -88,9 +84,9 @@
   </md-list>
 
 
-<br>
-<br>
-<br>
+  <br>
+  <br>
+  <br>
 
   
     <button md-fab (click)="click4before()" class="button-before"><md-icon>navigate_before</md-icon></button>

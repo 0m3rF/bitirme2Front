@@ -1,12 +1,12 @@
 {
     "HELLO": "Merhaba",
-    "WELCOME_MESSAGE":"Yeni bir müzik mi arıyorsun? O zaman doğru yerdesin!",
+    "WELCOME_MESSAGE":"Yeni bir müzik deneyimi mi arıyorsun ?",
     "WELCOME" : "Hoşgeldiniz",
     "CHANGE_LANG":"Dili Değiştir",
     "TURKISH": "Türkçe",
-    "ENGLISH": "İngilizce",
+    "ENGLISH": "English",
     "HEADER": "Veri Madenciliği Projesi",
-    "JAPON" : "Japonca",
+    "JAPON" : "日本語",
     "SELECT_LANG" : "Dil seçin",
     "USERNAME" : "Kullanıcı Adı",
     "PASSWORD" : "Şifre",
@@ -15,6 +15,7 @@
     "REGISTER_SUCCESS" : "Kayıt Başarılı",
     "LOGIN_FAIL" : "Giriş Başarısız",
     "LOGIN_SUCCESS" : "Giriş Başarılı",
+    "UPDATE_SUCCESS" : "Güncelleme Başarılı",
     "OK" : "Tamam",
     "TURKEY" : "Türkiye",
     "AZERBAIJAN" : "Azerbeycan",
@@ -40,5 +41,14 @@
     "PROFILE" : "Profil",
     "SETTINGS" : "Ayarlar",
     "CHANGE_INFO" : "Bilgilerini Değiştir",
-    "SEARCH_FOR_SONG" : "Şarkı Ara"
+    "SEARCH_FOR_SONG" : "Şarkı Ara",
+    "NEW_PASSWORD" : "Yeni Şifre",
+    "NEW_COUNTRY" : "Yeni Ülke",
+    "NEW_EMAIL" : "Yeni Email",
+    "NEW_AGE" : "Yeni Yaş",
+    "SAVE_CHANGES" : "Değişiklikleri Kaydet",
+    "DELETE_ACCOUNT" : "Hesabı Sil",
+    "ACCOUNT_DELETED" : "Hesap Silindi",
+    "SELECT_GENRE" : "Favori Türlerinizi Seçin"
+
 }

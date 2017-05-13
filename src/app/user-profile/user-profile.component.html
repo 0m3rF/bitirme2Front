@@ -1,3 +1,31 @@
-<p>
-  user-profile works!
-</p>
+<md-card class="left">
+    <md-card>
+        <span>{{'SEARCH_FOR_SONG'|translate}}</span>
+        <md-input-container>
+            <input id="searchInput" #searchInput mdInput>
+        </md-input-container>
+
+        <md-list>
+            <md-list-item *ngFor="let song of songs" > 
+            <md-checkbox class="songCheckbox" [value]="song.sarkiId"
+            [checked]="isSongChecked(song.sarkiId)" (change)="addFavSong(song.sarkiId)">{{song.sarkiismi}} - {{song.sanatciIsmi}}</md-checkbox>
+            </md-list-item>
+        </md-list>
+     </md-card>
+
+    <md-card>  
+        <span> {{"SELECT_GENRE" | translate}} </span>
+        <md-list>
+            <md-list-item *ngFor="let genre of this.service.genres" class="genre"> 
+            <md-checkbox class="genreCheckbox" [value]="genre.id" 
+            [checked]="isGenreChecked(genre.id)" (change)="addFavGenre(genre.id)">{{genre.name | translate}}</md-checkbox>
+            </md-list-item>
+        </md-list>
+  
+    </md-card>
+</md-card>
+
+
+<md-card class="right">
+    <app-user-stats></app-user-stats>
+</md-card>

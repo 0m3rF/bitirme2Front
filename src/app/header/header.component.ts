@@ -13,6 +13,7 @@ export class HeaderComponent {
 
   selectedLang = "";
   translate:any;
+  username = "";
   langs = [
     {value: 'tr', viewValue: 'TURKISH', class: 'flag-icon-tr' },
     {value: 'en', viewValue: 'ENGLISH', class: 'flag-icon-gb'},
@@ -21,6 +22,7 @@ export class HeaderComponent {
   constructor(private service: AppService, private _router: Router) {
      
     this.translate = service.getTranslate();
+
     this.selectedLang = service.getCookie("lang");
     }
 

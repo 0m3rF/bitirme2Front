@@ -22,27 +22,27 @@
 </form>
 
 
-<form class="register-form">
+<form class="register-form" [formGroup]="rForm" (ngSubmit)="registerUser(rForm.value)">
      <span> {{ 'CREATE_ACCOUNT' | translate }} </span>
 
     <p>
         <md-input-container class="example-full-width">
-          <input mdInput required type="text" [placeholder]="'USERNAME'|translate" value="" />
+          <input mdInput formControlName="name" type="text" [placeholder]="'USERNAME'|translate" value="" />
         </md-input-container>
     </p>
 
     <p>
         <md-input-container class="example-full-width">
-          <input mdInput required type="password" [placeholder]="'PASSWORD'|translate" value="" />
+          <input mdInput formControlName="pass" type="password" [placeholder]="'PASSWORD'|translate" value="" />
         </md-input-container>
     </p>
 
     <p>
         <md-input-container class="example-full-width">
-          <input mdInput required type="email" email [placeholder]="'EMAIL_ADDRESS'|translate" value="" />
+          <input mdInput formControlName="mail" type="email" email [placeholder]="'EMAIL_ADDRESS'|translate" value="" />
         </md-input-container>
     </p>
-      <button md-raised-button class="example-full-width" color="primary" (click)="register()"> {{'CREATE'|translate}}</button>
+      <button md-raised-button class="example-full-width" color="primary" type="submit" [disabled]="!rForm.valid" > {{'CREATE'|translate}}</button>
       <p class="message">{{'ALREADY_REGISTERED'|translate}} <a (click)="animateForm()"> {{'SIGN_IN'|translate}} </a></p>
   
 </form>

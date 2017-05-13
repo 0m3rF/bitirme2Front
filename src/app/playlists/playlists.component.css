@@ -1,0 +1,13 @@
+.refresh{
+    float:right;
+    position: absolute;
+    top: 4%;
+    right: 3%;
+}
+
+.playlistCard
+{
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 3%;
+}

@@ -292,22 +292,16 @@ export class FirstTimeComponent {
   {
     var local = JSON.parse(localStorage.getItem("currentUser"));
     console.log("fav songs = " + this.service.favSongs);
-    var info = {
-      username: local.username,
-      age : this.service.age,
-      favSongs : this.service.favSongs,
-      favGenres : this.service.favGenres,
-      country: this.service.selectedCountry,
-      token : local.token
-    }
 
     local.favSongId = this.service.favSongs;
     local.favGenreId = this.service.favGenres;
     local.country = this.service.selectedCountry;
     local.age = this.service.age;
 
+    localStorage.setItem("currentUser",JSON.stringify(local));
 
-    this.service.setFirstTimeInfo(info).subscribe(res =>{
+
+    this.service.setFirstTimeInfo(local).subscribe(res =>{
       this.closeFirstTime();
 
       this.service.openSnackBar("UPDATE_SUCCESS","OK");

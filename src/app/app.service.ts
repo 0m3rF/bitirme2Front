@@ -20,7 +20,7 @@ export class AppService {
   public favSongs = [];
   public selectedCountry = 1;
   public age  = 0;
-
+  public local = null;
 
   constructor(private _cookieService:CookieService,private _http:Http
   ,private _translate: TranslateService,public snackBar: MdSnackBar,
@@ -33,7 +33,7 @@ export class AppService {
       
 
       _translate.setDefaultLang("en");
-      this.logout();
+      //this.logout();
       
      if(this.getCookie("lang") == undefined){
         _translate.use('en');
@@ -55,7 +55,7 @@ export class AppService {
   {
     var local = JSON.parse(localStorage.getItem("currentUser"));
       console.log("local = " + JSON.stringify(local));
-    
+      this.local = local;
     if(!this.isFirstTime)
     {
       
@@ -123,9 +123,8 @@ export class AppService {
 
   searchSong(val)
   {
-   var token = JSON.parse(localStorage.getItem("currentUser")).token;
    console.log("aranacak input =  " + val);
-    return this._http.post(this.apiUrl + '/search?q='+val,{token:token,search:val})
+    return this._http.post(this.apiUrl + '/search?q='+val,{token:this.local.token,search:val})
                      .map(res=>res.json());
   }
 
@@ -141,15 +140,78 @@ export class AppService {
 
   getPopularSongs()
   {
-    var local = JSON.parse(localStorage.getItem("currentUser"));
-
-    return this._http.post(this.apiUrl + "/search",{token: local.token})
+    return this._http.post(this.apiUrl + "/search",{token: this.local.token})
                      .map(res => res.json());
   }
 
+  saveChanges(body)
+  {
 
+    console.log("gidecek body = " + JSON.stringify(body));
+    return this._http.post(this.apiUrl + "/saveChanges",body)
+                     .map(res=>res.json());
+  }
 
+  deleteAccount()
+  {
+    return this._http.post(this.apiUrl + "/deleteAccount" , {token: this.local.token,id:this.local._id})
+                     .map(res => res.json());
+  }
 
+  addSongHistory(song)
+  {
+    var local = JSON.parse(localStorage.getItem("currentUser"));
+    local.historySongId.push({songId:song.sarkiId,genreId:song.genreId});
+    localStorage.setItem("currentUser",JSON.stringify(local));
 
+    var body = {id: local._id, songId : song.sarkiId , token: local.token, genreId : song.genreId};
+    return this._http.post(this.apiUrl + "/addSongHistory",body)
+                     .map(res=>res.json());
+  }
 
+  addSongTime(song)
+  {
+    var local = JSON.parse(localStorage.getItem("currentUser"));
+    
+    var body = {id: local._id, songId : song.sarkiId , token: local.token, genreId : song.genreId};
+    return this._http.post(this.apiUrl + "/addTimeToSongHistory",body)
+                     .map(res=>res.json());
+  }
+
+  minusSongTime(song)
+  {
+    var local = JSON.parse(localStorage.getItem("currentUser"));
+    
+    var body = {id: local._id, songId : song.sarkiId , token: local.token, genreId : song.genreId};
+    return this._http.post(this.apiUrl + "/minusTimeToSongHistory",body)
+                     .map(res=>res.json());
+  }
+
+  getCountryIdFromname(country)
+  {
+    console.log("istenilen country = " + country);
+    
+    var obj = this.countries.filter((el)=>{
+      return el == country
+    })
+
+    console.log("istinelne country id = " + obj)
+    return country;
+  }
+
+  getPlaylistRecommendation(countryId,age,genreId,type)
+  {
+    var local = JSON.parse(localStorage.getItem("currentUser"));
+    var body = {
+      token: local.token,
+      type: type,
+      genreId : genreId,
+      userId: local._id,
+      age : age,
+      country : countryId
+    }
+
+   return this._http.post(this.apiUrl + "/playlistRecommendation",body)
+                     .map(res => res.json());
+  }
 }

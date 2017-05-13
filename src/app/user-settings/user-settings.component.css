@@ -1,0 +1,25 @@
+.wrapper{
+    width: 80%;
+    left: 10%;
+    margin: 3% auto; 
+    transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+    float : left;
+}
+.content{
+    width: 60%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.item
+{
+   margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+}
+
+.textHeader{
+    margin-left: auto;
+    margin-right: auto;
+    font-weight: bold;
+}

@@ -1,9 +1,102 @@
 
 
+  <!-- Card 1 : kişiye özel -->
+  <div class="playlistCard">
+<md-card>
+  <h1>{{'FOR_YOU' | translate}}</h1>
+  <button md-mini-fab class="refresh"><md-icon>refresh</md-icon></button>
+   <br>
+  <hr>
+
+  <app-song-shower *ngFor="let i of forYouSongs; let j = index" [info]="forYouSongs[j]"></app-song-shower>
+ 
+</md-card>
+  </div>
+
+
+    <!-- Card 2 : Ülkeler -->
+  <div class="playlistCard">
+    
+<md-card>
+  <h1>{{'COUNTRIES' | translate}}</h1>
+<button md-mini-fab class="refresh"><md-icon>refresh</md-icon></button>
+ <br>
+  <hr>
+
+    <md-input-container>
+      <input mdInput [ngModel]="this.service.getCountryId()"
+       [placeholder]="'COUNTRY'|translate"  [formControl]="stateCtrl" [mdAutocomplete]="auto" >
+    </md-input-container>
+
+    <md-autocomplete #auto="mdAutocomplete" >
+      <md-option *ngFor="let state of filteredStates | async" [value]="state">
+        {{ state }}
+      </md-option>
+    </md-autocomplete>
+
+    <app-song-shower *ngFor="let i of countrySongs; let j = index" [info]="countrySongs[j]"></app-song-shower>    
+ 
+</md-card>
+  </div>
+
+
+   <!-- Card  3 : Genreler -->
+  <div class="playlistCard">
+<md-card>
+  <h1>{{'GENRES' | translate}}</h1>
+
+  <button md-mini-fab class="refresh"><md-icon>refresh</md-icon></button>
+   <br>
+  <hr>
+
+      <md-select [placeholder]="'GENRES' | translate" (change)="genreChanged($event)">
+        <md-option *ngFor="let genre of service.genres" [value]="genre.id">
+          {{ genre.name }}
+        </md-option>
+      </md-select>
+
+  <app-song-shower *ngFor="let i of genreSongs; let j = index" [info]="genreSongs[j]"></app-song-shower>    
+
+      
+</md-card>
+  </div>
+
+
+   <!-- Card 4 : Yaş aralığıı -->  
+  <div class="playlistCard">
+<md-card>
+  <h1>{{'AGE' | translate}}</h1>
+    <button md-mini-fab class="refresh"><md-icon>refresh</md-icon></button>
+     <br>
+    <hr>
+
+    <md-input-container>
+      <input mdInput [placeholder]="'AGE'|translate" [value]="service.local.age">
+    </md-input-container>
+    
+  <app-song-shower *ngFor="let i of ageSongs; let j = index" [info]="ageSongs[j]"></app-song-shower>    
+ 
+</md-card>
+  </div>
+
+
+<!-- 
 <md-tab-group>
-  <md-tab [label]="'FOR_YOU' | translate">Kişiye Özel!</md-tab>
-  <md-tab [label]="'COUNTRIES' | translate">Ülkelerde Popüler</md-tab>
-  <md-tab [label]="'GENRES' | translate">Genrelerde Popüler</md-tab>
-  <md-tab [label]="'AGE' | translate">Yaş Aralıklarında Popüler</md-tab>
+
+
+  <md-tab [label]="'FOR_YOU' | translate">
+  </md-tab>
+
+  <md-tab [label]="'COUNTRIES' | translate">
+</md-tab>
+
+  <md-tab [label]="'GENRES' | translate">
+    
+  </md-tab>
+
+
+  <md-tab [label]="'AGE' | translate">
+ </md-tab>
 </md-tab-group>
 
+-->

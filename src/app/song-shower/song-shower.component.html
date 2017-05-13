@@ -1,0 +1,15 @@
+<br>
+<br>
+<button md-mini-fab (click)="playSong(info)"><md-icon>play_arrow</md-icon></button>
+
+<span>
+ {{info.sarkiismi}} - {{info.sanatciIsmi}}
+</span>
+
+ <button md-button style="float:right" (click)="toggleSongFav(info.sarkiId)">
+   <md-icon *ngIf="isSongChecked(info.sarkiId); else login" color="warn">favorite</md-icon>
+   <ng-template #login><md-icon>favorite_border</md-icon>
+    </ng-template></button>
+    
+
+<br>

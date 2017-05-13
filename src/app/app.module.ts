@@ -22,6 +22,8 @@ import { PlaylistsComponent } from './playlists/playlists.component';
 import { UserStatsComponent } from './user-stats/user-stats.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
+import { MusicPlayerComponent } from './music-player/music-player.component';
+import { SongShowerComponent } from './song-shower/song-shower.component';
 
 
 export function httpFactory(http:Http) {
@@ -38,7 +40,9 @@ export function httpFactory(http:Http) {
     PlaylistsComponent,
     UserStatsComponent,
     UserProfileComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    MusicPlayerComponent,
+    SongShowerComponent
   ],
   imports: [
     routes,
