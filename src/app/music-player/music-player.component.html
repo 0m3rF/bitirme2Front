@@ -21,18 +21,19 @@
             <td class="time">
                 <span> {{min}}:{{second}}/ 3:20 </span>
             </td>
+
+            <td>
+                <button md-mini-fab color="primary" (click)="closeMusicPlayer()">
+                <md-icon>close</md-icon>
+
+                </button>
+            </td>
     
             
         </tr>
     </table>
 
-    <!--
-  <span class="sarki"> {{song.sarkiismi}} - {{song.sanatciIsmi}} </span>
-  <button md-mini-fab color="primary" (click)="togglePlay()" style="float: left">
-      <md-icon *ngIf="!isPlaying">play_circle_filled</md-icon>
-      <md-icon *ngIf="isPlaying">pause_circle_filled</md-icon>
-      </button>
-    <md-slider color="primary" [(ngModel)]="bufferValue" class="slider"></md-slider>
-    <span class="time"> 0:00 / 3:00 </span>
-    -->
+
 </div>
+
+  <iframe *ngIf="isIdLoaded" width="550" height="550" style="visibility: hidden" [src]="this.youtubesrc" frameborder="0" ></iframe>

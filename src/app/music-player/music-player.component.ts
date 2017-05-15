@@ -1,5 +1,8 @@
 import { Component, OnInit,Input } from '@angular/core';
 import { AppService } from '../app.service'; 
+import { DomSanitizer } from '@angular/platform-browser';
+
+let YT:any;
 @Component({
   selector: 'app-music-player',
   templateUrl: './music-player.component.html',
@@ -18,15 +21,26 @@ song = {
   sanatciIsmi : "",
   genreId : 0
 };
+youtubesrc :any = null;
 bufferValue = 0;
+isIdLoaded = false;
 
-  constructor(public service: AppService) {
+  constructor(public service: AppService,public sanitizer:DomSanitizer) {
     service.musicPlayerComponent = this;
    }
 
+   videoURL() {
+    return this.sanitizer.bypassSecurityTrustResourceUrl(this.youtubesrc);
+  }
+
+
   playSong()
   {
+
+    
+
     this.isPlaying = true;
+    this.isIdLoaded = false;
     this.passedMs = 0;
 
     if(this.bufferValue >= 0)
@@ -35,8 +49,18 @@ bufferValue = 0;
       this.second = 0;
     }
 
-    this.intervalId = setInterval(()=>{
+    var search =  this.song.sarkiismi+ " " +  this.song.sanatciIsmi;
 
+    this.service.getYoutubeSongID(search).subscribe(res=>{
+        
+
+      this.youtubesrc = "https://www.youtube.com/embed/"+res.id+"?autoplay=1&enablejsapi=1&version=3&playerapiid=ytplayer";
+      this.youtubesrc = this.videoURL();
+
+      this.isIdLoaded = true;
+
+      this.intervalId = setInterval(()=>{
+        
       if(this.isPlaying)
       {
         
@@ -76,8 +100,10 @@ bufferValue = 0;
 
     },1000)
 
+        });
 
   }
+
 
   bufferValueToSecond(val)
   {
@@ -87,7 +113,7 @@ bufferValue = 0;
   pauseSong()
   {
     this.isPlaying = false;
-    clearInterval(this.intervalId);
+    window.clearInterval(this.intervalId);
   }
 
   togglePlay()
@@ -107,13 +133,31 @@ bufferValue = 0;
     if(this.isPlaying)
     {
       this.pauseSong();
+      document.querySelector("iframe").contentWindow.postMessage('{"event":"command","func":"pauseVideo"}', '*');    
     }
     else
     {
+
       this.playSong();  
+      document.querySelector("iframe").contentWindow.postMessage('{"event":"command","func":"playVideo"}', '*');    
     }
   }
   ngOnInit() {
+  }
+
+  closeMusicPlayer()
+  {
+    this.isPlaying = false;
+    this.isIdLoaded = false;
+    this.bufferValue = 0;
+    this.second = 0;
+    this.min = 0;
+    this.song = {
+      sarkiId : 0,
+      sarkiismi : "",
+      sanatciIsmi : "",
+      genreId : 0
+    };
   }
 
 }

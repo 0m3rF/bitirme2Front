@@ -24,7 +24,7 @@ import { UserProfileComponent } from './user-profile/user-profile.component';
 import { UserSettingsComponent } from './user-settings/user-settings.component';
 import { MusicPlayerComponent } from './music-player/music-player.component';
 import { SongShowerComponent } from './song-shower/song-shower.component';
-
+import { SafePipe } from './safe.pipe';
 
 export function httpFactory(http:Http) {
   return new TranslateStaticLoader(http, '/assets/i18n', '.json');
@@ -42,7 +42,8 @@ export function httpFactory(http:Http) {
     UserProfileComponent,
     UserSettingsComponent,
     MusicPlayerComponent,
-    SongShowerComponent
+    SongShowerComponent,
+    SafePipe
   ],
   imports: [
     routes,

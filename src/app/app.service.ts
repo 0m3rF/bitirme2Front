@@ -30,7 +30,6 @@ export class AppService {
     private _router: Router) {
       
       this.logout();
-      
 
       this.countries = this.getCountries();
       this.genres = this.getGenres();
@@ -213,5 +212,17 @@ export class AppService {
 
    return this._http.post(this.apiUrl + "/playlistRecommendation",body)
                      .map(res => res.json());
+  }
+
+
+  getYoutubeSongID(search)
+  {
+    var local = JSON.parse(localStorage.getItem("currentUser"));
+    var body = {
+      token : local.token,
+      search : search
+    }
+
+    return this._http.post(this.apiUrl + "/playYoutubeSong",body).map(res=>res.json());
   }
 }
