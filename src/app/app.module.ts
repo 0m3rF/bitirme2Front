@@ -51,7 +51,7 @@ export function httpFactory(http:Http) {
     HttpModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
-    MaterialModule.forRoot(),
+    MaterialModule,
     TranslateModule.forRoot({
             provide: TranslateLoader,
             useFactory: httpFactory,

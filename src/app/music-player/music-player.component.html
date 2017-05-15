@@ -1,2 +1,38 @@
 
-<footer>Bu BURADA DİKKKAT her yerde olmalı? https://valor-software.com/ng2-charts/</footer>
+<div class="footer"  *ngIf="song.sarkiismi != ''">
+
+    <table style="width:100%">
+        <tr>
+            <td class="sarki">
+                <span> {{song.sarkiismi}} - {{song.sanatciIsmi}} </span>
+            </td>
+      
+            <td style="float: left">
+                <button md-mini-fab color="primary" (click)="togglePlay()">
+                <md-icon *ngIf="!isPlaying">play_circle_filled</md-icon>
+                <md-icon *ngIf="isPlaying">pause_circle_filled</md-icon>
+                </button>
+            </td>
+     
+            <td class="slider">
+                <md-slider style="width: 100%" color="primary" [(ngModel)]="bufferValue"></md-slider>
+            </td>
+  
+            <td class="time">
+                <span> {{min}}:{{second}}/ 3:20 </span>
+            </td>
+    
+            
+        </tr>
+    </table>
+
+    <!--
+  <span class="sarki"> {{song.sarkiismi}} - {{song.sanatciIsmi}} </span>
+  <button md-mini-fab color="primary" (click)="togglePlay()" style="float: left">
+      <md-icon *ngIf="!isPlaying">play_circle_filled</md-icon>
+      <md-icon *ngIf="isPlaying">pause_circle_filled</md-icon>
+      </button>
+    <md-slider color="primary" [(ngModel)]="bufferValue" class="slider"></md-slider>
+    <span class="time"> 0:00 / 3:00 </span>
+    -->
+</div>

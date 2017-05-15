@@ -7,6 +7,8 @@ import { MdSnackBar } from '@angular/material';
 import { Genres } from './models/genres';
 import { Countries } from './models/countries';
 import { FirstTimeComponent } from './first-time/first-time.component';
+import { MusicPlayerComponent } from './music-player/music-player.component';
+
 @Injectable()
 export class AppService {
 
@@ -14,6 +16,7 @@ export class AppService {
   public isLoggedin = false;
   public isFirstTime = true;
   public firstTimeComponent : FirstTimeComponent= null;
+  public musicPlayerComponent : MusicPlayerComponent = null;
   public countries = null;
   public genres = null;
   public favGenres = [];
@@ -25,15 +28,15 @@ export class AppService {
   constructor(private _cookieService:CookieService,private _http:Http
   ,private _translate: TranslateService,public snackBar: MdSnackBar,
     private _router: Router) {
+      
+      this.logout();
+      
 
       this.countries = this.getCountries();
       this.genres = this.getGenres();
-      
-      console.log("Service çalıştı!");
-      
 
       _translate.setDefaultLang("en");
-      //this.logout();
+     
       
      if(this.getCookie("lang") == undefined){
         _translate.use('en');
@@ -44,7 +47,6 @@ export class AppService {
       else{
         _translate.use(this.getCookie("lang"))
       }
-     
  }
   getCountryId() // First time infoları değişirken tekrardan geldiğinde ülkenin seçili gelmesi için
   {    
@@ -54,7 +56,7 @@ export class AppService {
   setLocalInfos()
   {
     var local = JSON.parse(localStorage.getItem("currentUser"));
-      console.log("local = " + JSON.stringify(local));
+
       this.local = local;
     if(!this.isFirstTime)
     {
@@ -92,6 +94,31 @@ export class AppService {
     })
   }
 
+  logout()
+  {
+      this.isLoggedin = false;
+      localStorage.removeItem("currentUser");
+      this._router.navigate(['/home']);
+  }
+
+  getCountryIdFromname(country)
+  {
+    var obj = this.countries.filter((el)=>{
+      return el == country
+    })
+    return country;
+  }
+
+
+  getGenres()
+  {
+    return Genres.genres;
+  }
+
+  getCountries ()
+  {
+    return Countries.countries;
+  }
 
 /**
  * API işlemleri
@@ -109,12 +136,6 @@ export class AppService {
       .map(res => res.json());    
   }
 
-  logout()
-  {
-      this.isLoggedin = false;
-      localStorage.removeItem("currentUser");
-      this._router.navigate(['/']);
-  }
 
   setFirstTimeInfo(info)
   {
@@ -126,16 +147,6 @@ export class AppService {
    console.log("aranacak input =  " + val);
     return this._http.post(this.apiUrl + '/search?q='+val,{token:this.local.token,search:val})
                      .map(res=>res.json());
-  }
-
-  getGenres()
-  {
-    return Genres.genres;
-  }
-
-  getCountries ()
-  {
-    return Countries.countries;
   }
 
   getPopularSongs()
@@ -187,17 +198,6 @@ export class AppService {
                      .map(res=>res.json());
   }
 
-  getCountryIdFromname(country)
-  {
-    console.log("istenilen country = " + country);
-    
-    var obj = this.countries.filter((el)=>{
-      return el == country
-    })
-
-    console.log("istinelne country id = " + obj)
-    return country;
-  }
 
   getPlaylistRecommendation(countryId,age,genreId,type)
   {

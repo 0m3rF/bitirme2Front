@@ -1,4 +1,21 @@
 
+<!-- Card 0 : Arama kısmı -->
+
+  <div class="playlistCard">
+    <md-card>
+        <h1>{{'SEARCH_FOR_SONG'|translate}}</h1>
+      
+        <md-input-container>
+            <input id="searchInput" #searchInput mdInput [placeholder]="'SEARCH'|translate">
+        </md-input-container>
+          <br>
+          <hr>
+        <app-song-shower  *ngFor="let i of searchSongs; let j = index" [info]="searchSongs[j]"></app-song-shower>
+
+
+     </md-card>
+  </div>
+
 
   <!-- Card 1 : kişiye özel -->
   <div class="playlistCard">

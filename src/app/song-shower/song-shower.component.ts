@@ -45,6 +45,10 @@ export class SongShowerComponent implements OnInit {
   playSong(song)
   {
    console.log("Çalınacak parça = " + JSON.stringify(song) ); 
+   this.service.musicPlayerComponent.song = song;
+   this.service.musicPlayerComponent.bufferValue = 0;
+   this.service.musicPlayerComponent.playSong();
+   
    this.service.addSongHistory(song).subscribe(res=>{
      console.log("şarkı geçmişe eklendi :  " + JSON.stringify(res));
    });

@@ -1,16 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { AppService } from '../app.service';
 import { FormControl } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
-
+import 'rxjs/add/operator/filter';
+import 'rxjs/add/operator/distinctUntilChanged';
+import { Observable } from 'rxjs/Observable';
 @Component({
   selector: 'app-playlists',
   templateUrl: './playlists.component.html',
   styleUrls: ['./playlists.component.css']
 })
 export class PlaylistsComponent implements OnInit {
-  
+  @ViewChild("searchInput") searchInput;
+
   translate = null;
+  searchSongs = null;
   forYouSongs = null;
   countrySongs = null;
   ageSongs = null;
@@ -66,6 +70,19 @@ export class PlaylistsComponent implements OnInit {
   }
 
   ngOnInit() {
+
+      var keyups = Observable.fromEvent(<HTMLInputElement>this.searchInput.nativeElement,"keydown")
+      .map((e:KeyboardEvent) => (<HTMLInputElement>e.target).value )
+      .filter( val => val.length > 2 )
+      .debounceTime(500)
+      .distinctUntilChanged();
+      
+      keyups.subscribe(val =>{ 
+          console.log("You search that :" + val);
+          this.service.searchSong(val).subscribe(res =>{
+          this.searchSongs = res;
+          });
+      })
   }
 
 }
