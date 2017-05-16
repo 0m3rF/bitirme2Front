@@ -1,5 +1,5 @@
 
-<div class="footer"  *ngIf="song.sarkiismi != ''">
+<md-toolbar class="footer" *ngIf="song.sarkiismi != ''">
 
     <table style="width:100%">
         <tr>
@@ -8,32 +8,41 @@
             </td>
       
             <td style="float: left">
-                <button md-mini-fab color="primary" (click)="togglePlay()">
+                <button md-mini-fab color="accent" (click)="togglePlay()">
                 <md-icon *ngIf="!isPlaying">play_circle_filled</md-icon>
                 <md-icon *ngIf="isPlaying">pause_circle_filled</md-icon>
                 </button>
             </td>
      
             <td class="slider">
-                <md-slider style="width: 100%" color="primary" [(ngModel)]="bufferValue"></md-slider>
+                <md-slider #slider (input)="sliderChange(slider)" style="width: 100%" color="warn" [(ngModel)]="bufferValue"></md-slider>
             </td>
   
             <td class="time">
-                <span> {{min}}:{{second}}/ 3:20 </span>
+                <span> {{min}} : {{second}} / {{durMin}} : {{durSec}} </span>
             </td>
 
+            <td style="float: left">
+                <button md-mini-fab color="accent" (click)="toggleMute()">
+                <md-icon *ngIf="!isMuted">volume_up</md-icon>
+                <md-icon *ngIf="isMuted">volume_off</md-icon>
+                </button>
+            </td>
+    
+
             <td>
-                <button md-mini-fab color="primary" (click)="closeMusicPlayer()">
+                <button md-mini-fab color="accent" (click)="closeMusicPlayer()">
                 <md-icon>close</md-icon>
 
                 </button>
             </td>
-    
+            
+
             
         </tr>
     </table>
 
 
-</div>
+</md-toolbar>
 
-  <iframe *ngIf="isIdLoaded" width="550" height="550" style="visibility: hidden" [src]="this.youtubesrc" frameborder="0" ></iframe>
+  <iframe id="youtube" *ngIf="isIdLoaded" width="550" height="550" style="visibility: hidden" [src]="this.youtubesrc" frameborder="0" ></iframe>

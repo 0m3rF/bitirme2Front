@@ -10,7 +10,8 @@
         </md-input-container>
           <br>
           <hr>
-        <app-song-shower  *ngFor="let i of searchSongs; let j = index" [info]="searchSongs[j]"></app-song-shower>
+        <app-song-shower  *ngFor="let i of searchSongs; let j = index" [info]="searchSongs[j]">
+        </app-song-shower>
 
 
      </md-card>
@@ -21,10 +22,10 @@
   <div class="playlistCard">
 <md-card>
   <h1>{{'FOR_YOU' | translate}}</h1>
-  <button md-mini-fab class="refresh"><md-icon>refresh</md-icon></button>
+  <button md-mini-fab class="refresh" (click)="refreshPlayList(0)"><md-icon>refresh</md-icon></button>
    <br>
   <hr>
-
+  <div *ngIf="forYouSongs == null"> {{'PLAYLIST_LOADING'|translate}}</div>
   <app-song-shower *ngFor="let i of forYouSongs; let j = index" [info]="forYouSongs[j]"></app-song-shower>
  
 </md-card>
@@ -36,9 +37,10 @@
     
 <md-card>
   <h1>{{'COUNTRIES' | translate}}</h1>
-<button md-mini-fab class="refresh"><md-icon>refresh</md-icon></button>
+<button md-mini-fab class="refresh" (click)="refreshPlayList(1)"><md-icon>refresh</md-icon></button>
  <br>
   <hr>
+  <div *ngIf="countrySongs == null"> {{'PLAYLIST_LOADING'|translate}} </div>
 
     <md-input-container>
       <input mdInput [ngModel]="this.service.getCountryId()"
@@ -58,19 +60,20 @@
 
 
    <!-- Card  3 : Genreler -->
-  <div class="playlistCard">
+  <div class="playlistCard" >
 <md-card>
   <h1>{{'GENRES' | translate}}</h1>
 
   <button md-mini-fab class="refresh"><md-icon>refresh</md-icon></button>
    <br>
-  <hr>
-
-      <md-select [placeholder]="'GENRES' | translate" (change)="genreChanged($event)">
+         <md-select [placeholder]="'GENRES' | translate" (change)="genreChanged($event)">
         <md-option *ngFor="let genre of service.genres" [value]="genre.id">
           {{ genre.name }}
         </md-option>
       </md-select>
+  <hr>
+
+
 
   <app-song-shower *ngFor="let i of genreSongs; let j = index" [info]="genreSongs[j]"></app-song-shower>    
 
@@ -83,13 +86,15 @@
   <div class="playlistCard">
 <md-card>
   <h1>{{'AGE' | translate}}</h1>
-    <button md-mini-fab class="refresh"><md-icon>refresh</md-icon></button>
+    <button md-mini-fab class="refresh" (click)="refreshPlayList(3)"><md-icon>refresh</md-icon></button>
      <br>
-    <hr>
-
     <md-input-container>
       <input mdInput [placeholder]="'AGE'|translate" [value]="service.local.age">
     </md-input-container>
+    <hr>
+ <div *ngIf="ageSongs == null">{{'PLAYLIST_LOADING'|translate}}</div>
+
+
     
   <app-song-shower *ngFor="let i of ageSongs; let j = index" [info]="ageSongs[j]"></app-song-shower>    
  

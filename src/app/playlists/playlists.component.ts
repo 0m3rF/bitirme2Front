@@ -22,6 +22,7 @@ export class PlaylistsComponent implements OnInit {
   first = null;
   stateCtrl: FormControl; // autocomplete için
   filteredStates: any;
+  selectedGenre = 0;
   
   constructor(private service: AppService) {
     this.first = 100;
@@ -62,9 +63,10 @@ export class PlaylistsComponent implements OnInit {
   {
     var local = JSON.parse(localStorage.getItem("currentUser"));
     console.log("e = " + e.value);
+    this.selectedGenre = e.value;
     this.service.getPlaylistRecommendation(local.country,local.age,e.value,2)
     .subscribe(res=>{
-      console.log("genreye göre res = " + JSON.stringify(res));
+
       this.genreSongs = res;
     });
   }
@@ -84,5 +86,44 @@ export class PlaylistsComponent implements OnInit {
           });
       })
   }
+
+  refreshPlayList(type)
+  { // type 0 = for you, 1 = ülkeler , 2 = türler , 3 = yaş 
+    var local = JSON.parse(localStorage.getItem("currentUser"));
+
+    switch(type)
+    {
+      case 0:
+      this.service.getPlaylistRecommendation(local.country,local.age,0,1)
+        .subscribe(res=>{
+          this.forYouSongs = res;
+        });
+      break;
+
+      case 1:
+      this.service.getPlaylistRecommendation(local.country,local.age,0,3)
+        .subscribe(res=>{
+          this.countrySongs = res;
+        });
+      break;
+
+      case 2:
+      this.service.getPlaylistRecommendation(local.country,local.age,this.selectedGenre,2)
+        .subscribe(res=>{
+          this.genreSongs = res;
+        });
+      break;
+
+      case 3:
+      this.service.getPlaylistRecommendation(local.country,local.age,0,4)
+        .subscribe(res=>{
+          this.ageSongs = res;
+        });
+      break;
+    }
+
+  }
+
+  
 
 }

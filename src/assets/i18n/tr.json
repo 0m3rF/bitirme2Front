@@ -50,6 +50,7 @@
     "SAVE_CHANGES" : "Değişiklikleri Kaydet",
     "DELETE_ACCOUNT" : "Hesabı Sil",
     "ACCOUNT_DELETED" : "Hesap Silindi",
-    "SELECT_GENRE" : "Favori Türlerinizi Seçin"
+    "SELECT_GENRE" : "Favori Türlerinizi Seçin",
+    "PLAYLIST_LOADING" : "Oynatma Listesi Yükleniyor"
 
 }

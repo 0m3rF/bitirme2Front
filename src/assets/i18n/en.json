@@ -50,5 +50,6 @@
     "SAVE_CHANGES" : "Save Changes",
     "DELETE_ACCOUNT" : "Delete Account",
     "ACCOUNT_DELETED" : "Account Deleted",
-    "SELECT_GENRE" : "Select Your Favorite Genres"
+    "SELECT_GENRE" : "Select Your Favorite Genres",
+    "PLAYLIST_LOADING" : "Playlist Loading"
 }

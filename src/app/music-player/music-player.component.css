@@ -2,9 +2,10 @@
 {
     position: fixed;
     bottom: 0;
-    background-color: #FF4081;
     width: 100%;
     z-index: 999 !important;
+    background: #3F51B5;
+    color: #EFEFEF;
 }
 
 .slider

@@ -50,5 +50,6 @@
     "SAVE_CHANGES" : "変更内容を保存",
     "DELETE_ACCOUNT" : "アカウントを削除する",
     "ACCOUNT_DELETED" : "アカウントが削除されました",
-    "SELECT_GENRE" : "お気に入りのジャンルを選択"
+    "SELECT_GENRE" : "お気に入りのジャンルを選択",
+    "PLAYLIST_LOADING" : "プレイリストの読み込み"
 }
