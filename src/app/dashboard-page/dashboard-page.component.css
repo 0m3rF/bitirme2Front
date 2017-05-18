@@ -1,7 +1,7 @@
 .left
 {
     width: 50%;
-    left: 10%;
+    left: 5%;
     margin: 3% 0 0;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     float : left;
@@ -13,8 +13,8 @@
 {
     position: fixed;
     max-height: 750px;
-    width: 20%;
-    right : 10%; 
+    width: 30%;
+    right : 5%; 
     margin: 3% 0 0;
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     float:right;

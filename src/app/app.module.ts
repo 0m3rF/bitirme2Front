@@ -5,6 +5,8 @@ import { TranslateModule, TranslateLoader, TranslateStaticLoader } from 'ng2-tra
 import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ChartsModule } from 'ng2-charts';
+
 
 import { CookieService} from 'angular2-cookie/core';
 import { AppService } from './app.service';
@@ -46,6 +48,7 @@ export function httpFactory(http:Http) {
     SafePipe
   ],
   imports: [
+    ChartsModule,
     routes,
     BrowserModule,
     FormsModule,
