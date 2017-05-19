@@ -44,6 +44,7 @@ ytplayer = null;
   playSong()
   {
     this.isIdLoaded = false;
+    this.isMuted = false;
     this.passedMs = 0;
     var search =  this.song.sarkiismi+ " " +  this.song.sanatciIsmi;
 
@@ -57,7 +58,7 @@ ytplayer = null;
         this.ytplayer = new YT.Player('youtube');
         this.isPlaying = true;
         console.log(this.ytplayer);
-    },300);
+    },10);
       
 
       this.intervalId = setInterval(()=>{
@@ -148,20 +149,22 @@ ytplayer = null;
     if(this.isPlaying)
     {
       this.pauseSong();
-      document.querySelector("iframe").contentWindow.postMessage('{"event":"command","func":"pauseVideo"}', '*');    
+      this.ytplayer.pauseVideo();
+      //document.querySelector("iframe").contentWindow.postMessage('{"event":"command","func":"pauseVideo"}', '*');    
     }
     else
     {
 
       this.resumeSong();  
-      document.querySelector("iframe").contentWindow.postMessage('{"event":"command","func":"playVideo"}', '*');    
+      this.ytplayer.playVideo();      
+      //document.querySelector("iframe").contentWindow.postMessage('{"event":"command","func":"playVideo"}', '*');    
     }
   }
 
   toggleMute()
   {
 
-    console.log("MUTe ?" + this.isMuted);
+    console.log("Muted ? = " + this.isMuted);
     if(!this.isMuted)
     {
       this.ytplayer.mute();
