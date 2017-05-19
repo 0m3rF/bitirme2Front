@@ -51,5 +51,8 @@
     "DELETE_ACCOUNT" : "Delete Account",
     "ACCOUNT_DELETED" : "Account Deleted",
     "SELECT_GENRE" : "Select Your Favorite Genres",
-    "PLAYLIST_LOADING" : "Playlist Loading"
+    "PLAYLIST_LOADING" : "Playlist Loading",
+    "USERS_GENDER_COUNTS" : "User Count By Gender",
+    "USERS_AGE_AVERAGE" : "User Age Average By Country"
+    
 }

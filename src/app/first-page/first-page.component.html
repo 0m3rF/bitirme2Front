@@ -1,8 +1,34 @@
 
 <md-card class="leftSide"> 
   {{'WELCOME_MESSAGE' | translate}}
+ 
 <br>
-  {{ 'HELLO' | translate:param }}
+<br>
+
+<span> {{'USERS_GENDER_COUNTS' | translate }} </span>
+    <div style="display: block">
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"></canvas>
+  </div>
+
+  
+  <span> {{'USERS_AGE_AVERAGE' | translate }} </span>
+
+    <div style="display: block">
+      <canvas baseChart
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType"
+                  (chartHover)="chartHovered($event)"
+                  (chartClick)="chartClicked($event)"></canvas>
+    </div>
+
+
+
 
 </md-card>
 

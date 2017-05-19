@@ -1,18 +1,9 @@
 .statContent
 {
-    height: 1500px;
+    height: auto;
     width : 100%; 
-    background-color: red;
     overflow-y: scroll;
     max-height:650px;
     height: 100%;
 
-}
-
-.item{
-    width: 150px;
-    height: 500px;
-    background: green;
-    float:left;
-    clear: both;
 }

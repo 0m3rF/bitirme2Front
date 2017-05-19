@@ -51,5 +51,7 @@
     "DELETE_ACCOUNT" : "アカウントを削除する",
     "ACCOUNT_DELETED" : "アカウントが削除されました",
     "SELECT_GENRE" : "お気に入りのジャンルを選択",
-    "PLAYLIST_LOADING" : "プレイリストの読み込み"
+    "PLAYLIST_LOADING" : "プレイリストの読み込み",
+    "USERS_GENDER_COUNTS" : "ジェンダーによるユーザーカウント",
+    "USERS_AGE_AVERAGE" : "国別ユーザー年齢別平均"
 }
