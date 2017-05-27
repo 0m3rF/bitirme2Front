@@ -45,12 +45,17 @@ export class PlaylistsComponent implements OnInit {
           }) 
         });
 
-   
+        var local =  JSON.parse(localStorage.getItem("currentUser"));
+          this.service.getPlaylistRecommendation(local.country,local.age,0,1).subscribe(res=>{
+            this.forYouSongs = res;
+            console.log("kişiye özel res = " + JSON.stringify(res));
+          });
+   /*
     this.service.getPopularSongs().subscribe(res =>{
       this.forYouSongs = res;
       console.log("res = " + JSON.stringify(res));
       
-    });
+    });*/
    }
 
   filterStates(val: string) {
