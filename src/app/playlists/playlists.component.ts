@@ -40,7 +40,6 @@ export class PlaylistsComponent implements OnInit {
         .subscribe(a =>{
           var local = JSON.parse(localStorage.getItem("currentUser"));
           this.service.getPlaylistRecommendation(this.service.getCountryIdFromname(a),local.age,0,3).subscribe(res=>{
-            console.log("ülkeye göre res = " + JSON.stringify(res));
             this.countrySongs = res;
           }) 
         });
@@ -48,14 +47,8 @@ export class PlaylistsComponent implements OnInit {
         var local =  JSON.parse(localStorage.getItem("currentUser"));
           this.service.getPlaylistRecommendation(local.country,local.age,0,1).subscribe(res=>{
             this.forYouSongs = res;
-            console.log("kişiye özel res = " + JSON.stringify(res));
-          });
-   /*
-    this.service.getPopularSongs().subscribe(res =>{
-      this.forYouSongs = res;
-      console.log("res = " + JSON.stringify(res));
-      
-    });*/
+            });
+
    }
 
   filterStates(val: string) {

@@ -143,22 +143,19 @@ export class AppService {
 
   searchSong(val)
   {
-   console.log("aranacak input =  " + val);
     return this._http.post(this.apiUrl + '/search?q='+val,{token:this.local.token,search:val})
                      .map(res=>res.json());
   }
 
   getPopularSongs()
   {
-    return this._http.post(this.apiUrl + "/search",{token: this.local.token})
+    return this._http.post(this.apiUrl + "/playlistRecommendation",{token: this.local.token,type: 0,userid : this.local.userid})
                      .map(res => res.json());
   }
 
   saveChanges(body)
   {
-
-    console.log("gidecek body = " + JSON.stringify(body));
-    return this._http.post(this.apiUrl + "/saveChanges",body)
+     return this._http.post(this.apiUrl + "/saveChanges",body)
                      .map(res=>res.json());
   }
 
@@ -174,7 +171,7 @@ export class AppService {
     local.historySongId.push({songId:song.sarkiId,genreId:song.genreId});
     localStorage.setItem("currentUser",JSON.stringify(local));
 
-    var body = {id: local._id, songId : song.sarkiId , token: local.token, genreId : song.genreId};
+    var body = {id: local._id, userid : local.userid,songId : song.sarkiId , token: local.token, genreId : song.genreId};
     return this._http.post(this.apiUrl + "/addSongHistory",body)
                      .map(res=>res.json());
   }
@@ -183,7 +180,7 @@ export class AppService {
   {
     var local = JSON.parse(localStorage.getItem("currentUser"));
     
-    var body = {id: local._id, songId : song.sarkiId , token: local.token, genreId : song.genreId};
+    var body = {id: local._id,userid : local.userid, songId : song.sarkiId , token: local.token, genreId : song.genreId};
     return this._http.post(this.apiUrl + "/addTimeToSongHistory",body)
                      .map(res=>res.json());
   }
@@ -192,7 +189,7 @@ export class AppService {
   {
     var local = JSON.parse(localStorage.getItem("currentUser"));
     
-    var body = {id: local._id, songId : song.sarkiId , token: local.token, genreId : song.genreId};
+    var body = {id: local._id,userid : local.userid, songId : song.sarkiId , token: local.token, genreId : song.genreId};
     return this._http.post(this.apiUrl + "/minusTimeToSongHistory",body)
                      .map(res=>res.json());
   }
@@ -203,6 +200,7 @@ export class AppService {
     var local = JSON.parse(localStorage.getItem("currentUser"));
     var body = {
       token: local.token,
+      userid: local.userid,
       type: type,
       genreId : genreId,
       userId: local._id,
