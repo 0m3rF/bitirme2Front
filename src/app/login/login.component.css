@@ -2,13 +2,12 @@
   border-radius: 2px;
   display: inline-block;
   margin: 8% 0 0;
-  min-width: 200px;
-  max-width: 75%;
   transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+  width: 100%;
 }
 
 .login-form {
-  width: 350px;
+  width: 100%;
 }
 
 .example-full-width {
@@ -17,7 +16,7 @@
 
 .register-form {
   display: none;
-  width: 350px;
+  width: 100%;
 }
 
 a{

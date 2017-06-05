@@ -1,33 +1,26 @@
 
 <div class="statContent">
+
+<span> {{'USERS_GENDER_COUNTS' | translate }} </span>
     <div style="display: block">
-      <canvas baseChart
-              [data]="pieChartData"
-              [labels]="pieChartLabels"
-              [chartType]="pieChartType"></canvas>
+    <canvas baseChart
+            [datasets]="barChartData"
+            [labels]="barChartLabels"
+            [options]="barChartOptions"
+            [legend]="barChartLegend"
+            [chartType]="barChartType"></canvas>
+  </div>
 
-
-             
-    </div>
-   
-    <div style="display: block">
-      <canvas baseChart
-              [data]="polarAreaChartData"
-              [labels]="polarAreaChartLabels"
-              [legend]="polarAreaLegend"
-              [chartType]="polarAreaChartType"></canvas>
-    </div>
-
-
-
+  
+  <span> {{'USERS_AGE_AVERAGE' | translate }} </span>
 
     <div style="display: block">
       <canvas baseChart
-              [datasets]="radarChartData"
-              [labels]="radarChartLabels"
-              [chartType]="radarChartType"></canvas>
+                  [data]="doughnutChartData"
+                  [labels]="doughnutChartLabels"
+                  [chartType]="doughnutChartType"
+                  ></canvas>
     </div>
-
 
 
 

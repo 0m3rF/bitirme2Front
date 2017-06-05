@@ -32,7 +32,34 @@
   </div>
 
 
-    <!-- Card 2 : Ülkeler -->
+    <!-- Card 2 : Genreler -->
+
+      <div class="playlistCard" >
+<md-card>
+  <h1>{{'GENRES' | translate}}</h1>
+
+  <button md-mini-fab class="refresh"><md-icon>refresh</md-icon></button>
+   <br>
+         <md-select [placeholder]="'GENRES' | translate" (change)="genreChanged($event)">
+        <md-option *ngFor="let genre of service.genres" [value]="genre.id">
+          {{ genre.name }}
+        </md-option>
+      </md-select>
+  <hr>
+
+
+
+  <app-song-shower *ngFor="let i of genreSongs; let j = index" [info]="genreSongs[j]"></app-song-shower>    
+
+      
+</md-card>
+  </div>
+
+
+
+
+   <!-- Card  3 : Genreler 
+
   <div class="playlistCard">
     
 <md-card>
@@ -59,30 +86,7 @@
   </div>
 
 
-   <!-- Card  3 : Genreler -->
-  <div class="playlistCard" >
-<md-card>
-  <h1>{{'GENRES' | translate}}</h1>
-
-  <button md-mini-fab class="refresh"><md-icon>refresh</md-icon></button>
-   <br>
-         <md-select [placeholder]="'GENRES' | translate" (change)="genreChanged($event)">
-        <md-option *ngFor="let genre of service.genres" [value]="genre.id">
-          {{ genre.name }}
-        </md-option>
-      </md-select>
-  <hr>
-
-
-
-  <app-song-shower *ngFor="let i of genreSongs; let j = index" [info]="genreSongs[j]"></app-song-shower>    
-
-      
-</md-card>
-  </div>
-
-
-   <!-- Card 4 : Yaş aralığıı -->  
+Card 4 : Yaş aralığıı
   <div class="playlistCard">
 <md-card>
   <h1>{{'AGE' | translate}}</h1>
@@ -101,6 +105,7 @@
 </md-card>
   </div>
 
+-->
 
 <!-- 
 <md-tab-group>

@@ -45,10 +45,13 @@ export class FirstTimeComponent {
   constructor(private service : AppService) {
     this.translate = service.getTranslate();
     
-    
+    if(service.isFirstTime)
+    {
     service.getPopularSongs().subscribe(res=>{
       this.songs = res;
     });
+    }
+
 
     this.stateCtrl = new FormControl();
     this.filteredStates = this.stateCtrl.valueChanges
